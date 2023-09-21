@@ -1,43 +1,95 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="utf-8" />
-    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#000000" />
-    <meta
-      name="description"
-      content="Web site created using create-react-app"
-    />
-    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
-    <!--
-      manifest.json provides metadata used when your web app is installed on a
-      user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
-    -->
-    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
-    <!--
-      Notice the use of %PUBLIC_URL% in the tags above.
-      It will be replaced with the URL of the `public` folder during the build.
-      Only files inside the `public` folder can be referenced from the HTML.
-
-      Unlike "/favicon.ico" or "favicon.ico", "%PUBLIC_URL%/favicon.ico" will
-      work correctly both with client-side routing and a non-root public URL.
-      Learn how to configure a non-root public URL by running `npm run build`.
-    -->
-    <title>React App</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Around The US</title>
   </head>
-  <body>
-    <noscript>You need to enable JavaScript to run this app.</noscript>
-    <div id="root"></div>
-    <!--
-      This HTML file is a template.
-      If you open it directly in the browser, you will see an empty page.
+  <body class="body">
+      <header class="header">
+          <img src="./images/header/logo/logo.png" alt="header logo" class="header__logo">
+      </header>
+      <main class="container">
+        <section class="profile">
+            <div class="profile__avatar">
+                <div class="profile__avatar-edit-button" id="avatar-edit" >
+                    <div class="profile__avatar-edit-bg"></div>
+                    <img alt="edit" class="profile__avatar-edit"src="./images/profile/avatar/profile__avatar-edit.png">                       
+                </div>
+                <img alt="avatar" class="profile__avatar" id="avatar-image">  
+            </div>
+            <div class="profile__info">
+                <div class="profile__info-detail">
+                    <h1 class="profile__name" id="name-content"></h1>
+                    <button class="profile__edit-btn" type="button" id="edit-btn">
+                        <img src="./images/profile/edit-btn/profile__edit-btn.png" alt="edit-image" class="profile__edit-btn-image">
+                    </button>
+                </div>
+                
+                <p class="profile__about-me" id="about-content"></p>
+            </div>
+            <button class="profile__add-btn" type="button" id="add-btn">
+                <img src="./images/profile/add-btn/profile__add-btn.png" alt="add-image" class="profile__add-btn-image">
+            </button>
+        </section>
+        
+        <template class="elements__template" id="template">
+            <article class="elements__card">
+                <img src="./" alt="images" class="elements__image" id="photo">
+                <img src="./images/elements/delete.png" alt="delete" class="elements__delete" id="delete">
+                <div class="elements__item">
+                    <p class="elements__id" id="id"></p>
+                    <h2 class="elements__place-name" id="placename"></h2>
+                    <button class="elements__like" id="like">
+                        <img src="./images/elements/like.png" alt="like" class="elements__like-image" id="like-image">
+                        <p class="elements__like-count" id="like-count">0</p>
+                    </button>
+                </div>
+            </article>
+        </template>
 
-      You can add webfonts, meta tags, or analytics to this file.
-      The build step will place the bundled scripts into the <body> tag.
-
-      To begin the development, run `npm start` or `yarn start`.
-      To create a production bundle, use `npm run build` or `yarn build`.
-    -->
+        <section class="elements" id="holder"></section>
+        <div class="popup" id="popup">
+            <div class="popup__container" id="popup-form">
+                <button type="button" class="popup__close-btn" id="close-form">
+                    <img src="./images/popup/close-icon.png" alt="close-icon" class="popup__close-btn-image">
+                </button>
+                <h2 class="popup__info" id="form-title">Edit profile</h2>
+                <form class="popup__input-form" name="edit" id="edit">
+                    <input type="text" class="popup__input popup__input-name" id="name-input" name="name" placeholder="Nama" minlength="2" maxlength="40" required>
+                    <span class="popup__input-form-error name-input-error"></span>
+                    <input type="text" class="popup__input popup__input-about" id="about-input" name="about" placeholder="Tentang saya" minlength="2" maxlength="200" required>
+                    <span class="popup__input-form-error about-input-error"></span>
+                    <button type="submit" class="popup__submit popup__submit_inactive" disabled>Save</button>
+                </form>
+                <form class="popup__input-form" name="add" id="add">
+                    <input type="text" class="popup__input popup__input-title" id="title-input" name="title" placeholder="Judul" minlength="2" maxlength="30" required>
+                    <span class="popup__input-form-error title-input-error"></span>
+                    <input type="url" class="popup__input popup__input-url" id="url-input" name="url" placeholder="Url Gambar" required>
+                    <span class="popup__input-form-error url-input-error"></span>
+                    <button type="submit" class="popup__submit popup__submit_inactive" disabled>Save</button>
+                </form>                
+                <form class="popup__input-form" name="avatar" id="profile-avatar">
+                    <input type="url" class="popup__input popup__input-url" id="avatar-url" name="avatar-url" placeholder="Url Gambar" required>
+                    <span class="popup__input-form-error avatar-url-error"></span>
+                    <button type="submit" class="popup__submit popup__submit_inactive" disabled>Save</button>
+                </form>
+                <div class="popup__confirmation" id="confirm">
+                    <button class="popup__submit" id="confirm-submit">Ya</button>
+                </div>
+            </div>
+            <div class="popup__image" id="popup-image">
+                <button type="button" class="popup__close-btn" id="close-image">
+                    <img src="./images/popup/close-icon.png" alt="close-icon" class="popup__close-btn-image">
+                </button>
+                <img src="./" class="popup__place-image" id="place-image">
+                <p class="popup__placename" id="place-name"></p>
+            </div>
+        </div>
+    </main>
+    <footer class="footer">
+        <p class="footer__text">© 2021 Around The U.S.</p>
+    </footer>
   </body>
 </html>
