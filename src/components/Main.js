@@ -3,16 +3,26 @@ import profileEditIcon from '../images/profile/edit-btn/profile__edit-btn.png';
 import profileAddIcon from '../images/profile/add-btn/profile__add-btn.png';
 import deleteIcon from '../images/elements/delete.png';
 import likeIcon from '../images/elements/like.png';
-import closeIcon from '../images/popup/close-icon.png';
-import PopupWithForm from './PopupWithForm';
-
-function Main(){
+import { Api } from '../utils/api';
+function Main(props){
+    const api = new Api({
+        baseUrl: "https://around.nomoreparties.co/v1/web_id_03/",
+        headers: {
+          authorization: "5f8bc2ce-9c96-4e75-869d-b995088f8715",
+          "Content-Type": "application/json"
+        }
+      });
+    
+    const userInformation = api.getUserInformation();
+    
+    console.log(userInformation)
+    
     return(
         <>
         <main className="container">
         <section className="profile">
             <div className="profile__avatar">
-                <button className="profile__avatar-edit-button" id="avatar-edit" onClick={handleEditAvatarClick}>
+                <button className="profile__avatar-edit-button" id="avatar-edit" onClick={props.handleEditAvatarClick}>
                     <div className="profile__avatar-edit-bg"></div>
                     <img alt="edit" className="profile__avatar-edit"src={avatarEditIcon} />                       
                 </button>
@@ -21,14 +31,14 @@ function Main(){
             <div className="profile__info">
                 <div className="profile__info-detail">
                     <h1 className="profile__name" id="name-content">STEVEN</h1>
-                    <button className="profile__edit-btn" type="button" id="edit-btn" onClick={handleEditProfileClick}>
+                    <button className="profile__edit-btn" type="button" id="edit-btn" onClick={props.handleEditProfileClick}>
                         <img src={profileEditIcon} alt="edit" className="profile__edit-btn-image" />
                     </button>
                 </div>
                 
                 <p className="profile__about-me" id="about-content"></p>
             </div>
-            <button className="profile__add-btn" type="button" id="add-btn" onClick={handleAddPlaceClick}>
+            <button className="profile__add-btn" type="button" id="add-btn" onClick={props.handleAddPlaceClick}>
                 <img src={profileAddIcon} alt="add" className="profile__add-btn-image" />
             </button>
         </section>
@@ -49,70 +59,10 @@ function Main(){
         </template>
 
         <section className="elements" id="holder"></section>
-        <div className="popup" id="popup">
-            <div className="popup__container" id="popup-form">
-                <button type="button" className="popup__close-btn" id="close-form">
-                    <img src={closeIcon} alt="close-icon" className="popup__close-btn-image" />
-                </button>
-
-                <PopupWithForm name="edit" title="Edit Profile" />
-                <PopupWithForm name="add" title="Tempat Baru" />
-                <PopupWithForm name="profile-avatar" title="Ubah foto profil" />
-            </div>
-
-
-            <div className="popup__image" id="popup-image">
-                <button type="button" className="popup__close-btn" id="close-image">
-                    <img src={closeIcon} alt="close-icon" className="popup__close-btn-image" />
-                </button>
-                <img src="./" alt="place" className="popup__place-image" id="place-image" />
-                <p className="popup__placename" id="place-name"></p>
-            </div>
-        </div>
       </main>
         </>
     )
 }
 
-function handleEditAvatarClick(e){
-    const popup = document.getElementById('popup');
-    const popupform = document.getElementById('popup-form');
-    const editform = document.getElementById('edit');
-    const addform = document.getElementById('add');
-    const avatarform = document.getElementById('profile-avatar');
 
-    popup.classList.add('popup_opened');
-    popupform.classList.add('popup__container_opened');
-    editform.style.display = "none";
-    addform.style.display = "none";
-    avatarform.style.display = " grid";
-}
-
-function handleEditProfileClick(e){
-    const popup = document.getElementById('popup');
-    const popupform = document.getElementById('popup-form');
-    const editform = document.getElementById('edit');
-    const addform = document.getElementById('add');
-    const avatarform = document.getElementById('profile-avatar');
-
-    popup.classList.add('popup_opened');
-    popupform.classList.add('popup__container_opened');
-    editform.style.display = "grid";
-    addform.style.display = "none";
-    avatarform.style.display = " none";
-}
-
-function handleAddPlaceClick (e){
-    const popup = document.getElementById('popup');
-    const popupform = document.getElementById('popup-form');
-    const editform = document.getElementById('edit');
-    const addform = document.getElementById('add');
-    const avatarform = document.getElementById('profile-avatar');
-
-    popup.classList.add('popup_opened');
-    popupform.classList.add('popup__container_opened');
-    editform.style.display = "none";
-    addform.style.display = "grid";
-    avatarform.style.display = " none";
-}
 export default Main;
