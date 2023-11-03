@@ -13,6 +13,8 @@ function Main(props){
         avatar : ''
     });
 
+    const [Place, setPlace] = useState([]);
+
     useEffect(() => {
         const userInformation = api.getUserInformation()
         .then(r => {
@@ -21,8 +23,10 @@ function Main(props){
                 about: r.about,
                 avatar: r.avatar
             })
-        });    
-    })
+        });
+        const placeInformation = api.getInitialCards()
+        .then(res => setPlace(res))
+    }, [])
 
     const api = new Api({
         baseUrl: "https://around.nomoreparties.co/v1/web_id_03/",
@@ -57,23 +61,24 @@ function Main(props){
                 <img src={profileAddIcon} alt="add" className="profile__add-btn-image" />
             </button>
         </section>
-        
-        <template className="elements__template" id="template">
-            <article className="elements__card">
-                <img src="./" alt="elements" className="elements__image" id="photo" />
-                <img src={deleteIcon} alt="delete" className="elements__delete" id="delete" />
-                <div className="elements__item">
-                    <p className="elements__id" id="id"></p>
-                    <h2 className="elements__place-name" id="placename">Batam</h2>
-                    <button className="elements__like" id="like">
-                        <img src={likeIcon} alt="like" className="elements__like-image" id="like-image" />
-                        <p className="elements__like-count" id="like-count">0</p>
-                    </button>
-                </div>
-            </article>
-        </template>
-
-        <section className="elements" id="holder"></section>
+        <section className="elements" id="holder">
+        {
+            Place.map((card) =>
+                    <article className="elements__card">
+                        <img src={card.link} alt="elements" className="elements__image" id="photo" onClick={props.onCardClick}/>
+                        <img src={deleteIcon} alt="delete" className="elements__delete" id="delete" />
+                        <div className="elements__item">
+                            <p className="elements__id" id="id">{card.id}</p>
+                            <h2 className="elements__place-name" id="placename">{card.name}</h2>
+                            <button className="elements__like" id="like">
+                                <img src={likeIcon} alt="like" className="elements__like-image" id="like-image" />
+                                <p className="elements__like-count" id="like-count">{card.likes.length}</p>
+                            </button>
+                        </div>
+                    </article>
+            )
+        }
+        </section>
       </main>
         </>
     )

@@ -9,6 +9,7 @@
 
 .profile__avatar:hover .profile__avatar-edit-button{
     display: block;
+    margin-top: -15px;
 }
 
 .profile__avatar-edit-button{

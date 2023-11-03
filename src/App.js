@@ -6,12 +6,21 @@ import Main from './components/Main';
 import PopupEditAvatar from './components/PopupEditAvatar';
 import PopupEditProfile from './components/PopupEditProfile';
 import PopupAddPlace from './components/PopupAddPlace';
+import PopupPlaceImage from './components/PopupPlaceImage';
 
 function App() {
   const [isPopupOpen, setisPopupOpen] = useState(false);
   const [isEditProfilePopupOpen, setisEditProfilePopupOpen] = useState(false);
   const [isAddPlacePopupOpen, setisAddPlacePopupOpen] = useState(false);
   const [isEditAvatarPopupOpen, setisEditAvatarPopupOpen] = useState(false);
+  const [isPlaceImagePopupOpen, setisPlaceImagePopupOpen] = useState(false);
+
+
+  function onCardClick(props) {
+    console.log(props.target.src)
+    setisPlaceImagePopupOpen(true);
+    setisPopupOpen(true);
+  } 
 
   function handleEditAvatarClick(e){
     setisEditAvatarPopupOpen(true);
@@ -43,6 +52,7 @@ function App() {
         handleEditAvatarClick={handleEditAvatarClick} 
         handleEditProfileClick={handleEditProfileClick}
         handleAddPlaceClick={handleAddPlaceClick}
+        onCardClick={onCardClick}
       />
 
       
@@ -62,13 +72,10 @@ function App() {
                   closePopup={closePopup}
                 />
 
-            {/* <div className="popup__image" id="popup-image">
-                <button type="button" className="popup__close-btn" id="close-image">
-                    <img src={closeIcon} alt="close-icon" className="popup__close-btn-image" />
-                </button>
-                <img src="./" alt="place" className="popup__place-image" id="place-image" />
-                <p className="popup__placename" id="place-name"></p>
-            </div> */}
+                <PopupPlaceImage
+                  popupopen={isPlaceImagePopupOpen}
+                  closePopup={closePopup}
+                />
         </div>
 
 
