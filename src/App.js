@@ -14,12 +14,15 @@ function App() {
   const [isAddPlacePopupOpen, setisAddPlacePopupOpen] = useState(false);
   const [isEditAvatarPopupOpen, setisEditAvatarPopupOpen] = useState(false);
   const [isPlaceImagePopupOpen, setisPlaceImagePopupOpen] = useState(false);
+  const [isPlaceImage, setisPlaceImage] = useState(false);
+  const [isPlaceName, setisPlaceName] = useState(false);
 
 
   function onCardClick(props) {
-    console.log(props.target.src)
     setisPlaceImagePopupOpen(true);
     setisPopupOpen(true);
+    setisPlaceImage(props.target.src);
+    setisPlaceName(props.target.name);
   } 
 
   function handleEditAvatarClick(e){
@@ -42,6 +45,7 @@ function App() {
     setisEditAvatarPopupOpen(false);
     setisEditProfilePopupOpen(false);
     setisAddPlacePopupOpen(false);
+    setisPlaceImagePopupOpen(false);
   }
 
   return (
@@ -75,6 +79,8 @@ function App() {
                 <PopupPlaceImage
                   popupopen={isPlaceImagePopupOpen}
                   closePopup={closePopup}
+                  card={isPlaceImage}
+                  name={isPlaceName}
                 />
         </div>
 

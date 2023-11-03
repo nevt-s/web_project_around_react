@@ -65,7 +65,7 @@ function Main(props){
         {
             Place.map((card) =>
                     <article className="elements__card">
-                        <img src={card.link} alt="elements" className="elements__image" id="photo" onClick={props.onCardClick}/>
+                        <img src={card.link} alt="elements" className="elements__image" name={card.name} id="photo" onClick={props.onCardClick}/>
                         <img src={deleteIcon} alt="delete" className="elements__delete" id="delete" />
                         <div className="elements__item">
                             <p className="elements__id" id="id">{card.id}</p>
