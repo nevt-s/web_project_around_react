@@ -1,10 +1,9 @@
 import avatarEditIcon from '../images/profile/avatar/profile__avatar-edit.png';
 import profileEditIcon from '../images/profile/edit-btn/profile__edit-btn.png';
 import profileAddIcon from '../images/profile/add-btn/profile__add-btn.png';
-import deleteIcon from '../images/elements/delete.png';
-import likeIcon from '../images/elements/like.png';
 import { Api } from '../utils/api';
 import { useEffect, useState } from 'react';
+import Card from './Card';
 
 function Main(props){
     const [Profile, setProfile] = useState({
@@ -12,8 +11,6 @@ function Main(props){
         about : '',
         avatar : ''
     });
-
-    const [Place, setPlace] = useState([]);
 
     useEffect(() => {
         const userInformation = api.getUserInformation()
@@ -24,8 +21,6 @@ function Main(props){
                 avatar: r.avatar
             })
         });
-        const placeInformation = api.getInitialCards()
-        .then(res => setPlace(res))
     }, [])
 
     const api = new Api({
@@ -61,24 +56,9 @@ function Main(props){
                 <img src={profileAddIcon} alt="add" className="profile__add-btn-image" />
             </button>
         </section>
-        <section className="elements" id="holder">
-        {
-            Place.map((card) =>
-                    <article className="elements__card">
-                        <img src={card.link} alt="elements" className="elements__image" name={card.name} id="photo" onClick={props.onCardClick}/>
-                        <img src={deleteIcon} alt="delete" className="elements__delete" id="delete" />
-                        <div className="elements__item">
-                            <p className="elements__id" id="id">{card.id}</p>
-                            <h2 className="elements__place-name" id="placename">{card.name}</h2>
-                            <button className="elements__like" id="like">
-                                <img src={likeIcon} alt="like" className="elements__like-image" id="like-image" />
-                                <p className="elements__like-count" id="like-count">{card.likes.length}</p>
-                            </button>
-                        </div>
-                    </article>
-            )
-        }
-        </section>
+        <Card 
+            onCardClick={props.onCardClick}
+        />
       </main>
         </>
     )
