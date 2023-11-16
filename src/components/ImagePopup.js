@@ -1,7 +1,7 @@
 import closeIcon from '../images/popup/close-icon.png';
 
 
-function PopupPlaceImage(props){
+function ImagePopup(props){
     return(
         <>
             <div className={`popup__image ${props.popupopen ? 'popup__image_opened' : ''}`} id="popup-image">
@@ -15,4 +15,4 @@ function PopupPlaceImage(props){
     )
 }
 
-export default PopupPlaceImage;
+export default ImagePopup;

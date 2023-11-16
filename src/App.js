@@ -6,7 +6,7 @@ import Main from './components/Main';
 import PopupEditAvatar from './components/PopupEditAvatar';
 import PopupEditProfile from './components/PopupEditProfile';
 import PopupAddPlace from './components/PopupAddPlace';
-import PopupPlaceImage from './components/PopupPlaceImage';
+import ImagePopup from './components/ImagePopup';
 
 function App() {
   const [isPopupOpen, setisPopupOpen] = useState(false);
@@ -76,7 +76,7 @@ function App() {
                   closePopup={closePopup}
                 />
 
-                <PopupPlaceImage
+                <ImagePopup
                   popupopen={isPlaceImagePopupOpen}
                   closePopup={closePopup}
                   card={isPlaceImage}
