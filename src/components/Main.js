@@ -2,27 +2,11 @@ import avatarEditIcon from '../images/profile/avatar/profile__avatar-edit.png';
 import profileEditIcon from '../images/profile/edit-btn/profile__edit-btn.png';
 import profileAddIcon from '../images/profile/add-btn/profile__add-btn.png';
 import { Api } from '../utils/api';
-import { useEffect, useState } from 'react';
+import React from 'react';
 import Card from './Card';
+import { currentUserContext } from '../contexts/CurrentUserContext';
 
 function Main(props){
-    const [Profile, setProfile] = useState({
-        name : '',
-        about : '',
-        avatar : ''
-    });
-
-    useEffect(() => {
-        const userInformation = api.getUserInformation()
-        .then(r => {
-            setProfile({
-                name: r.name,
-                about: r.about,
-                avatar: r.avatar
-            })
-        });
-    }, [])
-
     const api = new Api({
         baseUrl: "https://around.nomoreparties.co/v1/web_id_03/",
         headers: {
@@ -30,6 +14,8 @@ function Main(props){
           "Content-Type": "application/json"
         }
     });   
+
+    const currentUser = React.useContext(currentUserContext);
   
     return(
         <>
@@ -40,17 +26,17 @@ function Main(props){
                     <div className="profile__avatar-edit-bg"></div>
                     <img alt="edit" className="profile__avatar-edit"src={avatarEditIcon} />                       
                 </button>
-                <img alt="avatar" className="profile__avatar" id="avatar" src={Profile.avatar} />  
+                <img alt="avatar" className="profile__avatar" id="avatar" src={currentUser.avatar} />  
             </div>
             <div className="profile__info">
                 <div className="profile__info-detail">
-                    <h1 className="profile__name" id="name-content">{Profile.name}</h1>
+                    <h1 className="profile__name" id="name-content">{currentUser.name}</h1>
                     <button className="profile__edit-btn" type="button" id="edit-btn" onClick={props.handleEditProfileClick}>
                         <img src={profileEditIcon} alt="edit" className="profile__edit-btn-image" />
                     </button>
                 </div>
                 
-                <p className="profile__about-me" id="about-content">{Profile.about}</p>
+                <p className="profile__about-me" id="about-content">{currentUser.about}</p>
             </div>
             <button className="profile__add-btn" type="button" id="add-btn" onClick={props.handleAddPlaceClick}>
                 <img src={profileAddIcon} alt="add" className="profile__add-btn-image" />
