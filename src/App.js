@@ -33,11 +33,11 @@ function App() {
     .then((res) => setcurrentUser(res)) 
   }, [])
 
-  function onCardClick(props) {
+  function onCardClick(e) {
     setisPlaceImagePopupOpen(true);
     setisPopupOpen(true);
-    setisPlaceImage(props.target.src);
-    setisPlaceName(props.target.name);
+    setisPlaceImage(e.target.src);
+    setisPlaceName(e.target.name);
   } 
 
   function handleEditAvatarClick(e){

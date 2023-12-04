@@ -74,6 +74,15 @@ export class Api {
           });
     }
 
+    changeLikeCardStatus(id, isLiked){
+      if(isLiked == true){
+        this.likeCard(id)
+      }
+      else if(isLiked ==false){
+        this.unlikeCard(id)
+      }
+    }
+
     deleteSelectedCard(id){
         return fetch(`https://around.nomoreparties.co/v1/web_id_03/cards/${id}`, {
             method: "DELETE",
