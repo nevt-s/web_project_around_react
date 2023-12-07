@@ -25,24 +25,6 @@ function Main(props){
 
     const currentUser = React.useContext(currentUserContext);
 
-    function handleCardLike(card) {
-        const api = new Api({
-            baseUrl: "https://around.nomoreparties.co/v1/web_id_03/",
-            headers: {
-              authorization: "5f8bc2ce-9c96-4e75-869d-b995088f8715",
-              "Content-Type": "application/json"
-            }
-        });
-    
-        // Periksa sekali lagi apakah kartu ini sudah disukai
-        // const isLiked = card.likes.some(i => i._id === currentUser._id);
-
-        // // Kirim permintaan ke API dan dapatkan data kartu yang diperbarui
-        // api.changeLikeCardStatus(card._id, isLiked).then((newCard) => {
-        //   setPlace((state) => state.map((c) => c._id === card._id ? newCard : c));
-        // });
-      }
-
     return(
         <>
         <main className="container">
@@ -70,11 +52,18 @@ function Main(props){
         </section>
         <section className="elements" id="holder">
                 {
-                    Place.map((card) => //const isOwn = card.owner._id === currentUser._id;
+                    Place.map((card) => 
                         <Card
                             key={card.id}
                             onCardClick={props.onCardClick}
-                            onCardLike={handleCardLike}
+                            onCardLike={function handleCardLike() {
+                                // Periksa sekali lagi apakah kartu ini sudah disukai
+                                const isLiked = card.likes.some(i => i._id === currentUser._id);
+                                
+                                // Kirim permintaan ke API dan dapatkan data kartu yang diperbarui
+                                api.changeLikeCardStatus(card._id, !isLiked);
+                            }
+                            }
                             card={card}
                         />
                     )

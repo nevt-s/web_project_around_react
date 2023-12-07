@@ -27,7 +27,7 @@ function Card(props){
                         <p className="elements__id" id="id">{props.card.id}</p>
                         <h2 className="elements__place-name" id="placename">{props.card.name}</h2>
                         <button className="elements__like" id="like">
-                            <img src={likeIcon} alt="like" className={isLiked ? "elements__like-black" :"elements__like-image"} id="like-image" onClick={props.onCardLike}/>
+                            <img src={likeIcon} alt="like" className={isLiked ? "elements__like-black" :"elements__like-image"} name={props.card._id} id="like-image" onClick={props.onCardLike}/>
                             <p className="elements__like-count" id="like-count">{props.card.likes.length}</p>
                         </button>
                     </div>
