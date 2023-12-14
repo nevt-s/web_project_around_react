@@ -50,11 +50,11 @@ export class Api {
         })
         .then(res => {
             if (res.ok) {
-              return res.json();
+              return this.getInitialCards();
             }
             
             return Promise.reject(`Error: ${res.status}`);
-          });
+          })
     }
 
     unlikeCard(id){
@@ -67,19 +67,19 @@ export class Api {
         })
         .then(res => {
             if (res.ok) {
-              return res.json();
+              return this.getInitialCards();
             }
             
             return Promise.reject(`Error: ${res.status}`);
-          });
+          })
     }
 
     changeLikeCardStatus(id, isLiked){
       if(isLiked == true){
-        this.likeCard(id)
+        return this.likeCard(id)
       }
       else if(isLiked ==false){
-        this.unlikeCard(id)
+        return this.unlikeCard(id)
       }
     }
 
@@ -93,7 +93,7 @@ export class Api {
         })
         .then(res => {
             if (res.ok) {
-              return res.json();
+              return this.getInitialCards();
             }
             
             return Promise.reject(`Error: ${res.status}`);

@@ -13,8 +13,8 @@ function PopupAddPlace(props){
                 name="add"
                 id="add"
                 title="Tempat baru"
-                popupopen={props.popupopen}
-                closePopup={props.closePopup}
+                isOpen={props.isOpen}
+                onClose={props.onClose}
             >
                     <input type="text" className="popup__input popup__input-title" id="title-input" name="title" placeholder="Judul" minLength="2" maxLength="30" required />
                     <span className="popup__input-form-error title-input-error"></span>

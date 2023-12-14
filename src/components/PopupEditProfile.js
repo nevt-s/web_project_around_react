@@ -17,8 +17,8 @@ function PopupEditProfile(props){
                 name="edit"
                 id="edit"
                 title="Edit Profil"
-                popupopen={props.popupopen}
-                closePopup={props.closePopup}
+                isOpen={props.isOpen}
+                onClose={props.onClose}
             >
                 <input type="text" className="popup__input popup__input-name" id="name-input" name="name" placeholder="Nama" minLength="2" maxLength="40" required />
                 <span className="popup__input-form-error name-input-error"></span>

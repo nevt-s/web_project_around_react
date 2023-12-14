@@ -7,8 +7,8 @@ function PopupEditAvatar(props){
                 name="avatar" 
                 id="profile-avatar"
                 title="Ubah foto profil"
-                popupopen={props.popupopen}
-                closePopup={props.closePopup}
+                isOpen={props.isOpen}
+                onClose={props.onClose}
             >
                 <input type="url" className="popup__input popup__input-url" id="avatar-url" name="avatar-url" placeholder="Url Gambar" required />
                 <span className="popup__input-form-error avatar-url-error"></span>

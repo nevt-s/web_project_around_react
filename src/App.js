@@ -75,27 +75,26 @@ function App() {
           handleAddPlaceClick={handleAddPlaceClick}
           onCardClick={onCardClick}
         />
-
         
         <div className={`popup ${isPopupOpen ? 'popup_opened' : ''}`} id="popup">
                   <PopupEditAvatar 
-                    popupopen={isEditAvatarPopupOpen}  
-                    closePopup={closePopup}
+                    isOpen={isEditAvatarPopupOpen}  
+                    onClose={closePopup}
                   />
 
                   <PopupEditProfile
-                    popupopen={isEditProfilePopupOpen}
-                    closePopup={closePopup}
+                    isOpen={isEditProfilePopupOpen}
+                    onClose={closePopup}
                   />
                   
                   <PopupAddPlace
-                    popupopen={isAddPlacePopupOpen}
-                    closePopup={closePopup}
+                    isOpen={isAddPlacePopupOpen}
+                    onClose={closePopup}
                   />
 
                   <ImagePopup
-                    popupopen={isPlaceImagePopupOpen}
-                    closePopup={closePopup}
+                    isOpen={isPlaceImagePopupOpen}
+                    onClose={closePopup}
                     card={isPlaceImage}
                     name={isPlaceName}
                   />

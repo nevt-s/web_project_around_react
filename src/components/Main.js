@@ -56,14 +56,20 @@ function Main(props){
                         <Card
                             key={card.id}
                             onCardClick={props.onCardClick}
+
                             onCardLike={function handleCardLike() {
-                                // Periksa sekali lagi apakah kartu ini sudah disukai
                                 const isLiked = card.likes.some(i => i._id === currentUser._id);
-                                
-                                // Kirim permintaan ke API dan dapatkan data kartu yang diperbarui
-                                api.changeLikeCardStatus(card._id, !isLiked);
+                                api.changeLikeCardStatus(card._id, !isLiked)
+                                    .then(res => setPlace(res));
+                                }
                             }
+
+                            onCardDelete={function handleCardDelete() {
+                                api.deleteSelectedCard(card._id)
+                                    .then(res => setPlace(res));
+                                }
                             }
+
                             card={card}
                         />
                     )

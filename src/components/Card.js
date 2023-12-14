@@ -22,7 +22,7 @@ function Card(props){
         <>
             <article className="elements__card">
                     <img src={props.card.link} alt="elements" className="elements__image" name={props.card.name} id="photo" onClick={props.onCardClick}/>
-                    <img src={deleteIcon} alt="delete" className={isOwn ? "elements__delete-show" : "elements__delete"} id="delete" />
+                    <img src={deleteIcon} alt="delete" className={isOwn ? "elements__delete-show" : "elements__delete"} id="delete" onClick={props.onCardDelete}/>
                     <div className="elements__item">
                         <p className="elements__id" id="id">{props.card.id}</p>
                         <h2 className="elements__place-name" id="placename">{props.card.name}</h2>
