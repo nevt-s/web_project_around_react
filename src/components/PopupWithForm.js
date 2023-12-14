@@ -8,8 +8,7 @@ function PopupWithForm(props){
       
         // Meneruskan nilai komponen terkelola ke handler eksternal
         // props.onUpdateUser({
-        //   name,
-        //   about: description,
+        //   name
         // });
       }
     return(

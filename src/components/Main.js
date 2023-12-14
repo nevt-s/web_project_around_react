@@ -17,13 +17,22 @@ function Main(props){
     });
 
     const [Place, setPlace] = useState([]);
+    const [Name, setName] = useState('');
+    const [About, setAbout] = useState('');
+    const [Avatar, setAvatar] = useState('');
+
+    const currentUser = React.useContext(currentUserContext);
 
     useEffect(() => {
         const placeInformation = api.getInitialCards()
-        .then(res => setPlace(res))
+        .then(res => setPlace(res));
     }, [])
 
-    const currentUser = React.useContext(currentUserContext);
+    useEffect(() => {
+        setName(currentUser.name);
+        setAbout(currentUser.about);
+        setAvatar(currentUser.avatar);
+    }, [currentUser])
 
     return(
         <>
@@ -34,17 +43,17 @@ function Main(props){
                     <div className="profile__avatar-edit-bg"></div>
                     <img alt="edit" className="profile__avatar-edit"src={avatarEditIcon} />
                 </button>
-                <img alt="avatar" className="profile__avatar" id="avatar" src={currentUser.avatar} />
+                <img alt="avatar" className="profile__avatar" id="avatar" src={Avatar} />
             </div>
             <div className="profile__info">
                 <div className="profile__info-detail">
-                    <h1 className="profile__name" id="name-content">{currentUser.name}</h1>
+                    <h1 className="profile__name" id="name-content">{Name}</h1>
                     <button className="profile__edit-btn" type="button" id="edit-btn" onClick={props.handleEditProfileClick}>
                         <img src={profileEditIcon} alt="edit" className="profile__edit-btn-image" />
                     </button>
                 </div>
 
-                <p className="profile__about-me" id="about-content">{currentUser.about}</p>
+                <p className="profile__about-me" id="about-content">{About}</p>
             </div>
             <button className="profile__add-btn" type="button" id="add-btn" onClick={props.handleAddPlaceClick}>
                 <img src={profileAddIcon} alt="add" className="profile__add-btn-image" />
