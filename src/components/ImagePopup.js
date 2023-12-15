@@ -8,8 +8,8 @@ function ImagePopup(props){
                 <button type="button" className="popup__close-btn" id="close-image" onClick={props.onClose}>
                     <img src={closeIcon} alt="close-icon" className="popup__close-btn-image" />
                 </button>
-                <img src={props.card} alt="place" className="popup__place-image" id="place-image" />
-                <p className="popup__placename" id="place-name">{props.name}</p>
+                <img src={props.PlaceImage} alt="place" className="popup__place-image" id="place-image" />
+                <p className="popup__placename" id="place-name">{props.PlaceName}</p>
             </div>
         </>
     )

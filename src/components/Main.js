@@ -17,9 +17,9 @@ function Main(props){
     });
 
     const [Place, setPlace] = useState([]);
-    const [Name, setName] = useState('');
-    const [About, setAbout] = useState('');
-    const [Avatar, setAvatar] = useState('');
+    const [UserName, setUserName] = useState('');
+    const [UserAbout, setUserAbout] = useState('');
+    const [UserAvatar, setUserAvatar] = useState('');
 
     const currentUser = React.useContext(currentUserContext);
 
@@ -29,9 +29,9 @@ function Main(props){
     }, [])
 
     useEffect(() => {
-        setName(currentUser.name);
-        setAbout(currentUser.about);
-        setAvatar(currentUser.avatar);
+        setUserName(currentUser.name);
+        setUserAbout(currentUser.about);
+        setUserAvatar(currentUser.avatar);
     }, [currentUser])
 
     return(
@@ -43,17 +43,17 @@ function Main(props){
                     <div className="profile__avatar-edit-bg"></div>
                     <img alt="edit" className="profile__avatar-edit"src={avatarEditIcon} />
                 </button>
-                <img alt="avatar" className="profile__avatar" id="avatar" src={Avatar} />
+                <img alt="avatar" className="profile__avatar" id="avatar" src={UserAvatar} />
             </div>
             <div className="profile__info">
                 <div className="profile__info-detail">
-                    <h1 className="profile__name" id="name-content">{Name}</h1>
+                    <h1 className="profile__name" id="name-content">{UserName}</h1>
                     <button className="profile__edit-btn" type="button" id="edit-btn" onClick={props.handleEditProfileClick}>
                         <img src={profileEditIcon} alt="edit" className="profile__edit-btn-image" />
                     </button>
                 </div>
 
-                <p className="profile__about-me" id="about-content">{About}</p>
+                <p className="profile__about-me" id="about-content">{UserAbout}</p>
             </div>
             <button className="profile__add-btn" type="button" id="add-btn" onClick={props.handleAddPlaceClick}>
                 <img src={profileAddIcon} alt="add" className="profile__add-btn-image" />

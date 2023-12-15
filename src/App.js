@@ -85,6 +85,7 @@ function App() {
                   <PopupEditProfile
                     isOpen={isEditProfilePopupOpen}
                     onClose={closePopup}
+                    onUpdateUser={currentUser}
                   />
                   
                   <PopupAddPlace
@@ -95,8 +96,8 @@ function App() {
                   <ImagePopup
                     isOpen={isPlaceImagePopupOpen}
                     onClose={closePopup}
-                    card={isPlaceImage}
-                    name={isPlaceName}
+                    PlaceImage={isPlaceImage}
+                    PlaceName={isPlaceName}
                   />
           </div>
 
