@@ -63,6 +63,10 @@ function App() {
     setisPlaceImagePopupOpen(false);
   }
 
+  function handleUpdateUser(){
+    const editUser = api.editUserInformation()
+  }
+
   return (
     <currentUserContext.Provider value={currentUser}>
 
@@ -85,7 +89,7 @@ function App() {
                   <PopupEditProfile
                     isOpen={isEditProfilePopupOpen}
                     onClose={closePopup}
-                    onUpdateUser={currentUser}
+                    onUpdateUser={handleUpdateUser}
                   />
                   
                   <PopupAddPlace
