@@ -9,6 +9,7 @@ import PopupAddPlace from './components/PopupAddPlace';
 import ImagePopup from './components/ImagePopup';
 import { Api } from './utils/api';
 import { currentUserContext } from './contexts/CurrentUserContext';
+import Card from './components/Card';
 
 function App() {
   const api = new Api({
@@ -27,10 +28,16 @@ function App() {
   const [isPlaceImage, setisPlaceImage] = useState(false);
   const [isPlaceName, setisPlaceName] = useState(false);
   const [currentUser, setcurrentUser] = useState(false);
+  const [Place, setPlace] = useState([]);
 
   useEffect(() => {
     const currentUser = api.getUserInformation()
     .then((res) => setcurrentUser(res)) 
+  }, [])
+
+  useEffect(() => {
+    const placeInformation = api.getInitialCards()
+    .then(res => setPlace(res));
   }, [])
 
   function onCardClick(e) {
@@ -63,8 +70,25 @@ function App() {
     setisPlaceImagePopupOpen(false);
   }
 
-  function handleUpdateUser(){
-    const editUser = api.editUserInformation()
+  function handleUpdateUser(newUserData){
+    const editUser = api.editUserInformation(newUserData).then((r) => {
+      setcurrentUser(r)
+      closePopup()
+    })
+  }
+
+  function handleUpdateAvatar(newAvatar){
+    const changeAvatar = api.changeProfileAvatar(newAvatar).then((r) => {
+      setcurrentUser(r)
+      closePopup()
+    })
+  }
+
+  function handleAddPlaceSubmit(newCard){
+    const addCard = api.addNewCard(newCard).then(res=>{
+      setPlace(res);
+      closePopup()
+    })
   }
 
   return (
@@ -78,12 +102,36 @@ function App() {
           handleEditProfileClick={handleEditProfileClick}
           handleAddPlaceClick={handleAddPlaceClick}
           onCardClick={onCardClick}
+          getCard={
+              Place.map((card) => 
+              <Card
+                  key={card.id}
+                  onCardClick={onCardClick}
+        
+                  onCardLike={function handleCardLike() {
+                      const isLiked = card.likes.some(i => i._id === currentUser._id);
+                      api.changeLikeCardStatus(card._id, !isLiked)
+                          .then(res => setPlace(res));
+                      }
+                  }
+        
+                  onCardDelete={function handleCardDelete() {
+                      api.deleteSelectedCard(card._id)
+                          .then(res => setPlace(res));
+                      }
+                  }
+        
+                  card={card}
+              />
+            )
+          }
         />
         
         <div className={`popup ${isPopupOpen ? 'popup_opened' : ''}`} id="popup">
                   <PopupEditAvatar 
                     isOpen={isEditAvatarPopupOpen}  
                     onClose={closePopup}
+                    onUpdateAvatar={handleUpdateAvatar}
                   />
 
                   <PopupEditProfile
@@ -95,6 +143,7 @@ function App() {
                   <PopupAddPlace
                     isOpen={isAddPlacePopupOpen}
                     onClose={closePopup}
+                    onAddNewCard={handleAddPlaceSubmit}
                   />
 
                   <ImagePopup

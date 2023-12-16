@@ -16,17 +16,17 @@ function Main(props){
         }
     });
 
-    const [Place, setPlace] = useState([]);
+    // const [Place, setPlace] = useState([]);
     const [UserName, setUserName] = useState('');
     const [UserAbout, setUserAbout] = useState('');
     const [UserAvatar, setUserAvatar] = useState('');
 
     const currentUser = React.useContext(currentUserContext);
 
-    useEffect(() => {
-        const placeInformation = api.getInitialCards()
-        .then(res => setPlace(res));
-    }, [])
+    // useEffect(() => {
+    //     const placeInformation = api.getInitialCards()
+    //     .then(res => setPlace(res));
+    // }, [])
 
     useEffect(() => {
         setUserName(currentUser.name);
@@ -39,10 +39,10 @@ function Main(props){
         <main className="container">
         <section className="profile">
             <div className="profile__avatar">
-                <button className="profile__avatar-edit-button" id="avatar-edit" onClick={props.handleEditAvatarClick}>
+                <div className="profile__avatar-edit-button" id="avatar-edit" onClick={props.handleEditAvatarClick}>
                     <div className="profile__avatar-edit-bg"></div>
                     <img alt="edit" className="profile__avatar-edit"src={avatarEditIcon} />
-                </button>
+                </div>
                 <img alt="avatar" className="profile__avatar" id="avatar" src={UserAvatar} />
             </div>
             <div className="profile__info">
@@ -60,7 +60,7 @@ function Main(props){
             </button>
         </section>
         <section className="elements" id="holder">
-                {
+                {/* {
                     Place.map((card) => 
                         <Card
                             key={card.id}
@@ -82,7 +82,8 @@ function Main(props){
                             card={card}
                         />
                     )
-                }
+                } */}
+                {props.getCard}
         </section>
       </main>
         </>

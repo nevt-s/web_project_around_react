@@ -19,7 +19,7 @@ export class Api {
           });
     }
 
-    addNewCard(name, link){
+    addNewCard({Card, CardUrl}){
         return fetch("https://around.nomoreparties.co/v1/web_id_03/cards", {
             method: "POST",
             headers: {
@@ -27,13 +27,13 @@ export class Api {
                 "Content-Type": "application/json"
             },
             body: JSON.stringify({
-                name: name,
-                link: link
+                name: Card,
+                link: CardUrl
             })
         })
         .then(res => {
             if (res.ok) {
-              return res.json();
+              return this.getInitialCards();
             }
             
             return Promise.reject(`Error: ${res.status}`);
@@ -115,7 +115,7 @@ export class Api {
             });
     }
 
-    editUserInformation(name, about){
+    editUserInformation({name, about}){
         return fetch("https://around.nomoreparties.co/v1/web_id_03/users/me", {
             method: "PATCH",
             headers: {

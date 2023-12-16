@@ -13,7 +13,7 @@ function PopupWithForm(props){
                     
                     <form className="popup__input-form" onSubmit={props.onSubmit}>
                         {props.children}
-                        <button type="submit" className="popup__submit popup__submit_inactive" disabled>Save</button>
+                        <button type="submit" className="popup__submit">Save</button>
                     </form>
                 </div> 
             </div>
