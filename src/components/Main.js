@@ -1,20 +1,20 @@
 import avatarEditIcon from '../images/profile/avatar/profile__avatar-edit.png';
 import profileEditIcon from '../images/profile/edit-btn/profile__edit-btn.png';
 import profileAddIcon from '../images/profile/add-btn/profile__add-btn.png';
-import { Api } from '../utils/api';
+// import Api from '../utils/api';
 import { useState, useEffect } from 'react';
 import React from 'react';
-import Card from './Card';
+// import Card from './Card';
 import { currentUserContext } from '../contexts/CurrentUserContext';
 
 function Main(props){
-    const api = new Api({
-        baseUrl: "https://around.nomoreparties.co/v1/web_id_03/",
-        headers: {
-          authorization: "5f8bc2ce-9c96-4e75-869d-b995088f8715",
-          "Content-Type": "application/json"
-        }
-    });
+    // const api = new Api({
+    //     baseUrl: "https://around.nomoreparties.co/v1/web_id_03/",
+    //     headers: {
+    //       authorization: "5f8bc2ce-9c96-4e75-869d-b995088f8715",
+    //       "Content-Type": "application/json"
+    //     }
+    // });
 
     // const [Place, setPlace] = useState([]);
     const [UserName, setUserName] = useState('');

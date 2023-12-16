@@ -1,4 +1,4 @@
-export class Api {
+export default class Api {
     constructor(options) {
       // body konstruktor
       this.options = options;
