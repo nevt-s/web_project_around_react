@@ -1,15 +1,15 @@
-import './App.css';
+import '../App.css'
 import { React, useEffect, useState } from 'react';
-import Header from './components/Header';
-import Footer from './components/Footer';
-import Main from './components/Main';
-import PopupEditAvatar from './components/PopupEditAvatar';
-import PopupEditProfile from './components/PopupEditProfile';
-import PopupAddPlace from './components/PopupAddPlace';
-import ImagePopup from './components/ImagePopup';
-import { Api } from './utils/api';
-import { currentUserContext } from './contexts/CurrentUserContext';
-import Card from './components/Card';
+import Header from './Header';
+import Footer from './Footer';
+import Main from './Main';
+import PopupEditAvatar from './EditAvatarPopup';
+import PopupEditProfile from './EditProfilePopup';
+import PopupAddPlace from './AddPlacePopup';
+import ImagePopup from './ImagePopup';
+import { Api } from '../utils/api';
+import { currentUserContext } from '../contexts/CurrentUserContext';
+import Card from './Card';
 
 function App() {
   const api = new Api({
@@ -102,26 +102,27 @@ function App() {
           handleEditProfileClick={handleEditProfileClick}
           handleAddPlaceClick={handleAddPlaceClick}
           onCardClick={onCardClick}
-          getCard={
-              Place.map((card) => 
+          getCard=
+          {
+            Place.map((card) => 
               <Card
-                  key={card.id}
-                  onCardClick={onCardClick}
-        
-                  onCardLike={function handleCardLike() {
-                      const isLiked = card.likes.some(i => i._id === currentUser._id);
-                      api.changeLikeCardStatus(card._id, !isLiked)
-                          .then(res => setPlace(res));
-                      }
-                  }
-        
-                  onCardDelete={function handleCardDelete() {
-                      api.deleteSelectedCard(card._id)
-                          .then(res => setPlace(res));
-                      }
-                  }
-        
-                  card={card}
+                key={card.id}
+                onCardClick={onCardClick}
+      
+                onCardLike={function handleCardLike() {
+                    const isLiked = card.likes.some(i => i._id === currentUser._id);
+                    api.changeLikeCardStatus(card._id, !isLiked)
+                        .then(res => setPlace(res));
+                    }
+                }
+      
+                onCardDelete={function handleCardDelete() {
+                    api.deleteSelectedCard(card._id)
+                        .then(res => setPlace(res));
+                    }
+                }
+      
+                card={card}
               />
             )
           }
@@ -159,10 +160,7 @@ function App() {
       </div>
 
     </currentUserContext.Provider>
-
   );
 }
-
-
 
 export default App;
