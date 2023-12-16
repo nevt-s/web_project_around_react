@@ -1,4 +1,4 @@
-import { Api } from '../utils/api';
+import { Api } from '../utils/Api';
 import deleteIcon from '../images/elements/delete.png';
 import likeIcon from '../images/elements/like.png';
 import { useState, useEffect } from 'react';
