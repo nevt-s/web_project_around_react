@@ -156,5 +156,7 @@ class Api {
           });
     }
   }
+
+  export const api = new Api();
   
-export default Api;
+  export default Api;
