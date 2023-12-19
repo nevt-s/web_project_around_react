@@ -1,4 +1,4 @@
-export default class Api {
+class Api {
     constructor(options) {
       // body konstruktor
       this.options = options;
@@ -156,4 +156,4 @@ export default class Api {
           });
     }
   }
-
+export default Api;
