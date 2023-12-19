@@ -157,4 +157,4 @@ class Api {
     }
   }
   
-export default Apix
+export default Api;
